@@ -9,7 +9,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
+    protected $table = "users";
+    /**
+     * $size 是头像的尺寸
+     *  return的是头像的链接
+     */
+    public function gravatar($size = '100')
+    {
+        $hash = md5(strtolower(trim( $this->attributes['email'])));
+        return "http://www.gravatar.com/avatar/{$hash}?s={$size}";
+    }
     /**
      * The attributes that are mass assignable.
      *
