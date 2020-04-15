@@ -22,6 +22,15 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users|max:255',
             'password' => 'required|confirmed|min:6'
         ]);
-        return;
+
+        $user = User::create([
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>bcrypt($request->password),
+        ]);
+        //flash只在下一次使用时生效
+        session()->flash('success','欢迎,您将在这里入坑laravel');
+        //redirect重定向
+        return redirect()->route('users.show',[$user->id]);
     }
 }
