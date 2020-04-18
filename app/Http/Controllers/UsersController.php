@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 class UsersController extends Controller
 {
     //
@@ -28,6 +29,8 @@ class UsersController extends Controller
             'email'=>$request->email,
             'password'=>bcrypt($request->password),
         ]);
+        //用户注册后自动登录
+        Auth::login($user);
         //flash只在下一次使用时生效
         session()->flash('success','欢迎,您将在这里入坑laravel');
         //redirect重定向
