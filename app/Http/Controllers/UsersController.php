@@ -7,6 +7,18 @@ use App\Models\User;
 use Auth;
 class UsersController extends Controller
 {
+    //类似于tp的中间件 only是执行的方法，except是除了这些方法
+    public function  __construct()
+    {
+        //利用auth来判断是否处于登陆状态
+        $this->middleware('auth',[
+            'except'=>['show','create','store']
+        ]);
+        $this->middleware('guest',[
+            'only'=>['create']
+        ]);
+    }
+
     //
     public function create()
     {
@@ -35,5 +47,30 @@ class UsersController extends Controller
         session()->flash('success','欢迎,您将在这里入坑laravel');
         //redirect重定向
         return redirect()->route('users.show',[$user->id]);
+    }
+    //创建更改用户资料界面
+    public function edit(User $user)
+    {
+        //authorize是来自controller的，update是policy中的Userpolicy中的update验证,第二个参数对应的是第二个值默认第一个值框架自带
+        $this->authorize('update',$user);
+        //上方代码是判断用户是否有权限更改
+        return view('users.edit',compact('user'));
+    }
+    //提交用户信息更改
+    public function update(User $user,Request $request)
+    {
+        $this->authorize('update',$user);
+        $this->validate($request,[
+            'name' => 'required|max:50',
+            'password' => 'nullable|confirmed|min:6',
+        ]);
+        $data=[];
+        $data['name'] = $request->name;
+        if($request->password){
+            $data['password'] = bcrypt($request->password);
+        }
+        $user::updated($data);
+        session()->flash('success','更新用户资料成功');
+        return redirect()->route('users.show',$user);
     }
 }

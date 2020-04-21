@@ -10943,3 +10943,13 @@ section.user_info h1 {
   border-radius: 50%;
 }
 
+.gravatar_eidt {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.gravatar_eidt .gravatar {
+  float: none;
+  max-width: 100px;
+}
+
