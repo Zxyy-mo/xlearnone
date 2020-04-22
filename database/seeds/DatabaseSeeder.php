@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Database\Eloquent\Model;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        //unguard 负责解除自动填充操作限制
+         Model::unguard();
+         $this->call(UsersTableSeeder::class);
+        //reguard 负责恢复限制
+         Model::reguard();
     }
 }

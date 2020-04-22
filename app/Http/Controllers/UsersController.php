@@ -12,14 +12,19 @@ class UsersController extends Controller
     {
         //利用auth来判断是否处于登陆状态
         $this->middleware('auth',[
-            'except'=>['show','create','store']
+            'except'=>['show','create','store','index']
         ]);
         $this->middleware('guest',[
             'only'=>['create']
         ]);
     }
-
-    //
+    //用户列表界面
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('users.index',compact('users'));
+    }
+    //创建用户注册界面
     public function create()
     {
         return view('users.create');
@@ -28,6 +33,7 @@ class UsersController extends Controller
     {
         return View('users.show',compact('user'));
     }
+    //接收用户注册信息并处理
     public function store(Request $request)
     {
         $this->validate($request,[
