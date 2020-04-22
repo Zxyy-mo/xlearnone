@@ -82,6 +82,7 @@ class UsersController extends Controller
     //用户删除
     public function destroy(User $user)
     {
+        //需要先判断一下已登陆用户是否为管理员
         $this->authorize('destroy', $user);
         $user->delete();
         session()->flash('success', '成功删除用户！');
