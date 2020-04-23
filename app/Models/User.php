@@ -19,6 +19,14 @@ class User extends Authenticatable
         $hash = md5(strtolower(trim( $this->attributes['email'])));
         return "http://www.gravatar.com/avatar/{$hash}?s={$size}";
     }
+    //boot方法会在模型完成初始化后加载,所以我们监听creating功能
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function($user){
+            $user->activation_token = str_random(30);
+        });
+    }
     /**
      * The attributes that are mass assignable.
      *
