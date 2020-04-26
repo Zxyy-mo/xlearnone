@@ -99,12 +99,12 @@ class UsersController extends Controller
         //send的参数是发送视图模板,$data是发送的数据,闭包
         $view='emails.confirm';
         $data = compact('user');
-        $from='summer@example.com';
-        $name='Xiaoyu';
+//        $from='summer@example.com';
+//        $name='Xiaoyu';
         $to = $user->email;
         $subject = "感谢注册 Weibo 应用！请确认你的邮箱。";
-        Mail::send($view,$data,function ($message) use ($from,$name,$to,$subject){
-            $message->from($from,$name)->to($to)->subject($subject);
+        Mail::send($view,$data,function ($message) use ($to,$subject){
+            $message->to($to)->subject($subject);
         });
     }
     public function confirmEmail($token)
