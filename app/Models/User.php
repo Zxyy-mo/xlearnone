@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
     protected $table = "users";
+    //指明一个用户拥有多条微博
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
+    }
     /**
      * $size 是头像的尺寸
      *  return的是头像的链接
