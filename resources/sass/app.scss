@@ -61,3 +61,22 @@ section.user_info {
     max-width: 100px;
   }
 }
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  a{
+    width: 33.3%;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    border-left: 1px solid #eee;
+    &:first-child{
+      border:0;
+    }
+  }
+  strong{
+    display: block;
+    font-size: 1.2em;
+  }
+}

@@ -13,8 +13,9 @@ class DatabaseSeeder extends Seeder
     {
         //unguard 负责解除自动填充操作限制
          Model::unguard();
-       $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(StatusesTableSeeder::class);
+        $this->call(FollowersTableSeeder::class);
         //reguard 负责恢复限制
          Model::reguard();
     }

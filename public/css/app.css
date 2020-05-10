@@ -10953,3 +10953,26 @@ section.user_info h1 {
   max-width: 100px;
 }
 
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats a {
+  width: 33.3%;
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  border-left: 1px solid #eee;
+}
+
+.stats a:first-child {
+  border: 0;
+}
+
+.stats strong {
+  display: block;
+  font-size: 1.2em;
+}
+

@@ -10,6 +10,9 @@
             @include('shared._user_info')
       {{--            这里传入参数也可以因为本身include就是将页面引入进来--}}
           </section>
+          <section class="stats">
+            @include('shared._stats')
+          </section>
           <section class="status">
               @if($statuses->count()>0)
                 <ul class="list-unstyled">

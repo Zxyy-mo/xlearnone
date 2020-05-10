@@ -19,8 +19,10 @@ class FollowersTableSeeder extends Seeder
         $followers = $users->slice(1);
         $followers_ids = $followers->pluck('id')->toArray();
         //关注除了1号用户以外的所有用户
-        $user->follow($follower_ids);
+        $user->follow($followers_ids);
         //除了1号以外的用户都来关注一号
-        foreach($followers_ids as )
+        foreach($followers as $follow){
+            $follow->follow($user_id);
+        }
     }
 }
