@@ -33,7 +33,9 @@ class UsersController extends Controller
     }
     public function show(User $user)
     {
-        return View('users.show',compact('user'));
+        //查询用户所发的所有微博并且根据创建时间进行降序排列
+        $statuses = $user->statuses()->orderBy('created_at','desc')->paginate(30);
+        return View('users.show',compact('user','statuses'));
     }
     //接收用户注册信息并处理
     public function store(Request $request)

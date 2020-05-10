@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Status extends Model
 {
+	protected $fillable= ['content'];
     public function user()
     {
         //在微博模型中指明一条微博属于一个用户
