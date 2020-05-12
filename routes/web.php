@@ -31,3 +31,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 //由于微博这边只需要添加与删除 所以我们限定资源路由
 Route::resource('statuses', 'StatusesController', ['only' => ['store' ,'destroy']]);
 Route::get('test','UsersController@test');
+//关注列表与粉丝列表
+Route::get('/users/{user}/following' , 'UsersController@following')->name('user.following');
+Route::get('/users/{user}/followers' , 'UsersController@followers')->name('user.followers');

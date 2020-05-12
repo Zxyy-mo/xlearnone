@@ -47,7 +47,7 @@ class User extends Authenticatable
         $this->followers()->detach($user_ids,false);
     }
     //判断登录用户是否关注第三方用户
-    public function isFollowing($user_id)
+    public function isfollowing($user_id)
     {
         return $this->followings()->contains($user_id);
     }
