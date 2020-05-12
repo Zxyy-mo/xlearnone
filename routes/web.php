@@ -34,3 +34,6 @@ Route::get('test','UsersController@test');
 //关注列表与粉丝列表
 Route::get('/users/{user}/following' , 'UsersController@following')->name('user.following');
 Route::get('/users/{user}/followers' , 'UsersController@followers')->name('user.followers');
+//允许用户关注与取消关注
+Route::post('/users/followers/{user}','FollowersController@store')->name('followers.add');
+Route::delete('/users/followers/{user}','FollowersController@destroy')->name('followers.delete');

@@ -10,7 +10,10 @@
             @include('shared._user_info')
       {{--            这里传入参数也可以因为本身include就是将页面引入进来--}}
           </section>
-          <section class="stats">
+          @if(Auth::check())
+            @include('users._follow_form')
+          @endif
+          <section class="stats mt-2">
             @include('shared._stats')
           </section>
           <section class="status">
