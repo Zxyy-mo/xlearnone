@@ -37,3 +37,10 @@ Route::get('/users/{user}/followers' , 'UsersController@followers')->name('user.
 //允许用户关注与取消关注
 Route::post('/users/followers/{user}','FollowersController@store')->name('followers.add');
 Route::delete('/users/followers/{user}','FollowersController@destroy')->name('followers.delete');
+Route::get('/test-sql', function() {
+
+    DB::enableQueryLog();
+    $user_ids=[1,2,3,4,5];
+    $user = App\Models\Status::whereIn('user_id', $user_ids)->with('user')->orderBy('created_at', 'desc');
+    return response()->json(DB::getQueryLog());
+});
